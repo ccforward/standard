@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>MDToHtml的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.0/kissy.js" charset="utf-8"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <link rel="stylesheet" href="http://g.tbcdn.cn/kissy/k/1.3.0/css/dpl/base-min.css">
+    <style>
+        body{
+            color: #333;
+            border-color: #999;
+            border-width: 2px;
+            line-height: 1.5;
+            text-align:left;
+            padding: 0 40px;
+        }
+        /*markdown的css*/
+        pre{
+            background-color: #eee;
+            padding: 10px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        code{
+            background-color: #eee;
+            padding: 1px 3px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px; 
+        }
+        pre code {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        li p{
+            margin: 0.3em;
+        }
+        ul > li{
+            list-style-type: disc;
+        }
+        a:link, a:visited{
+            color: #33e;
+            text-decoration: none;
+        }
+        a:hover{
+            color: #00f;
+            text-shadow:1px 1px 2px #ccf;
+            text-decoration:underline;
+        }
+        h1{
+            color: #999;
+            font-weight: 400;
+            font-size: 36px;
+        }
+        h2{
+            border-bottom: 1px dotted #aaa;
+            margin-bottom: 1em;
+            color: #333;
+            font-size: 30px;
+        }
+        h3{
+            color: #666;
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 21px;
+        }
+        h5 {
+            font-size: 18px;
+        }
+        /*markdown的css*/
+        #J_input{
+            width: 38%;
+            height: 620px;
+        }
+        #J_code {
+            width: 38%;
+            height: 320px;
+            margin-top: 20px;
+        }
+        #J_preview{
+            position: absolute;
+            left: 42%;
+            top: 70px;
+            height: 2000px;
+            border-left: 1px solid #ddd;
+            padding-left: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <h2>MDToHtml的demo</h2>
+    <div>
+        <p>输入markdown</p>
+        <textarea id="J_input" >##title</textarea>
+    </div>
+    <div>
+        <textarea id="J_code" ></textarea>
+    </div>
+    <div id="J_preview">
+        
+    </div>
+
+
+<script src="../index.js" charset="utf-8"></script>
+<script>
+
+    var md = new MDToHtml();
+
+    // init
+    $('#J_code').val(md.parse($('#J_input').html()));
+    $('#J_preview').html(md.parse($('#J_input').html()));
+
+    // input
+    $('#J_input').on('input',function(){
+        var output = md.parse($('#J_input').val());
+        $('#J_code').val(output);
+        $('#J_preview').html(output);
+    })
+</script>
+</body>
+</html>
+
